@@ -1,0 +1,9 @@
+@import "fonts";
+@import "vars";
+
+body {
+	background: $bg;
+	color: $default;
+}
+
+@import "media"; // Всегда в конце
