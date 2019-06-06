@@ -1,9 +1,14 @@
 @import "fonts";
 @import "vars";
 
-body {
-	background: $bg;
-	color: $default;
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
 }
 
 @import "media"; // Всегда в конце
