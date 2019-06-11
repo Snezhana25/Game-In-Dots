@@ -1,14 +1,14 @@
 @import "fonts";
 @import "vars";
 
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 *:focus {
-	outline: none;
+  outline: none;
 }
 
 .container {
@@ -26,7 +26,7 @@
       justify-content: space-around;
       align-items: center;
 
-      .type-game {
+      .renderList {
         position: relative;
         display: block;
 
@@ -59,13 +59,11 @@
   }
 }
 
-
-
-.name, .btn, .type-game {
+.name, .btn, .renderList {
   width: 30%;
 }
 
-.name, .btn{
+.name, .btn {
   height: 40px;
 
 }
@@ -74,4 +72,18 @@
   text-decoration: none;
   color: $accent;
 }
+
+.active {
+  color: red;
+}
+
+.board div {
+  background-color: black;
+  border: 1px solid grey;
+  box-sizing: border-box;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
 @import "media"; // Всегда в конце
