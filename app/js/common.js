@@ -1,13 +1,21 @@
+const defaultmode = 'easyMode';
+
 let pointgame = document.querySelector('.point-game');
 let list = document.querySelector('.list');
+
+let board = document.querySelector('.board');
+let r = 5; // Add it to the board
 
 let play = document.querySelector('.btn');
 let gamer = document.querySelector('.name').value.trim();
 
-
-document.addEventListener("DOMContentLoaded", initGame);
+document.addEventListener("DOMContentLoaded", createListobj);
 
 // play.addEventListener('click', createListobj);
+
+function louder() {
+
+}
 
 function createListobj() {
     let settingsGame = "http://starnavi-frontend-test-task.herokuapp.com/game-settings";
@@ -19,48 +27,15 @@ function createListobj() {
         .then((r) => {
             console.log('fetch ok', r);
             listgame(r);
+            initGame(r[defaultmode].field); // Draw game board
+            levelsteps(r[defaultmode].delay);
+
         })
         .catch((error) => {
             console.log(JSON.stringify(error));
         });
 
 }
-
-const board = [];
-const boardWidth = 10, boardHeight = 5;
-
-function initGame() {
-    const boardElement = document.querySelector('.board');
-
-    for (var y = 0; y < boardHeight; ++y) {
-        var row = [];
-        for (var x = 0; x < boardWidth; ++x) {
-            var cell = {};
-
-            // Create a <div></div> and store it in the cell object
-            cell.element = document.createElement('div');
-
-            // Add it to the board
-            boardElement.appendChild(cell.element);
-
-            // Add to list of all
-            row.push(cell);
-        }
-
-        // Add this row to the board
-        board.push(row);
-    }
-}
-
-// for(var r = 0; r <= 10; r++) {
-//     var x = document.getElementById('myTable').insertRow(r);
-//
-//     for(var c = 0;c <= 10; c++) {
-//         var y = x.insertCell(c);
-//         y.innerHTML= r + c;
-//     }
-//
-// }
 
 function listgame(obj) {
     console.log("obj", obj);
@@ -73,9 +48,6 @@ function listgame(obj) {
         li.setAttribute('class', 'item');
         ul.appendChild(li);
         li.innerHTML += name;
-        console.log('index',index);
-        console.log('arr[index]', arr[index]);
-        console.log('name', name);
     });
 
     ul.classList.add('collapsed');
@@ -93,4 +65,52 @@ function listgame(obj) {
         });
     });
 }
+
+
+function initGame(size) {
+    console.log('size', size);
+    for (let i = 0; i < size; i++) {
+        var row = document.createElement("div");
+        row.className = "row";
+
+        for (let c = 1; c <= size; c++) {
+            var cell = document.createElement("div");
+            cell.className = "gridsquare";
+            cell.innerText = (i * size) + c;
+            row.appendChild(cell);
+        }
+
+        board.appendChild(row);
+    }
+
+    // startGame();
+}
+
+function levelsteps(delay) {
+    console.log('delay',delay);
+}
+
+// function startGame() {
+//     // Start the game loop (it will call itself with timeout)
+//     gameLoop();
+// }
+
+// function gameLoop() {
+//     // Loop over the entire board, and update every cell
+//     for (let y = 0; y < r; ++y) {
+//         for (let x = 0; x < r; ++x) {
+//             let res = board[y][x];
+//
+//             if (res.snake) {
+//                 res.element.className = 'snake';
+//             }
+//             else {
+//                 res.element.className = '';
+//             }
+//         }
+//     }
+//
+//     // This function calls itself, with a timeout of 1000 milliseconds
+//     setTimeout(gameLoop, 1000);
+// }
 

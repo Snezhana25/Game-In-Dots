@@ -77,13 +77,21 @@
   color: red;
 }
 
-.board div {
-  background-color: black;
-  border: 1px solid grey;
-  box-sizing: border-box;
-  display: block;
-  width: 24px;
-  height: 24px;
+.board {
+  margin: 10px;
+
+  div {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    box-sizing: border-box;
+    background: $default;
+    border: 1px solid $bg-hover;
+  }
+
+ .snake {
+    background: green;
+  }
 }
 
 @import "media"; // Всегда в конце
